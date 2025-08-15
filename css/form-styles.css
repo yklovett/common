@@ -1,4 +1,4 @@
-/* 공용 Form 스타일 CSS - 애니메이션 없음 */
+/* 공용 Form 스타일 CSS - 모든 프로젝트에서 사용 가능 */
 
 /* 로그인 폼 스타일 */
 #loginForm,
@@ -194,4 +194,82 @@
     border: none;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+}
+
+/* 범용 폼 스타일 - 다른 프로젝트에서도 사용 가능 */
+.form-container {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border: 1px solid #e9ecef;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+
+.form-container:hover {
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+    border-color: #007bff;
+}
+
+.form-input {
+    border: 2px solid #e1e5e9;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.form-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15), 0 4px 15px rgba(0, 123, 255, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    background: #ffffff;
+}
+
+.form-button {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 12px 32px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    transition: all 0.3s ease;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.form-button:hover {
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+    background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+}
+
+.form-button:active {
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .form-title {
+        font-size: 1.5rem;
+    }
+    
+    .form-input {
+        padding: 10px 14px;
+        font-size: 0.95rem;
+    }
+    
+    .form-button {
+        padding: 10px 24px;
+        font-size: 0.95rem;
+    }
 }
