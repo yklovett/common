@@ -7,32 +7,19 @@
 let currentSite = null;
 
 /**
- * config.yaml에서 login.project 값을 읽어와서 currentSite 설정
- * @param {string} configUrl - config.yaml 파일의 URL
- * @returns {Promise<string>} currentSite 값
+ * HTML에서 설정된 CURRENT_SITE 값을 사용하여 currentSite 설정
+ * @returns {string} currentSite 값
  */
-async function loadCurrentSite(configUrl) {
-    try {
-        const response = await fetch(configUrl);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const configText = await response.text();
-
-        // YAML 파싱 (간단한 방식)
-        const projectMatch = configText.match(/project:\s*"([^"]+)"/);
-        if (projectMatch) {
-            currentSite = projectMatch[1];
-            return currentSite;
-        } else {
-            throw new Error('login.project 값을 찾을 수 없습니다.');
-        }
-    } catch (error) {
-        // 기본값으로 fallback
-        currentSite = 'admin';
+function loadCurrentSite() {
+    // HTML에서 설정된 CURRENT_SITE 값 사용
+    if (window.CURRENT_SITE) {
+        currentSite = window.CURRENT_SITE;
         return currentSite;
     }
+
+    // 기본값으로 fallback
+    currentSite = 'admin';
+    return currentSite;
 }
 
 /**
@@ -74,12 +61,11 @@ async function loadServiceDropdown(site) {
 
 /**
  * 네비게이션 초기화
- * @param {string} configUrl - config.yaml 파일의 URL
  */
-async function initializeNavigation(configUrl) {
+async function initializeNavigation() {
     try {
         // currentSite 로드
-        await loadCurrentSite(configUrl);
+        loadCurrentSite();
 
         // 서비스 드롭다운 메뉴 로드
         await loadServiceDropdown(currentSite);
@@ -93,33 +79,7 @@ async function initializeNavigation(configUrl) {
  * configUrl이 제공되지 않은 경우 기본값 사용
  */
 document.addEventListener("DOMContentLoaded", function () {
-    // config.yaml 파일의 URL을 동적으로 생성
-    const currentPath = window.location.pathname;
-
-    // 여러 가지 경로 패턴을 시도
-    let configUrl;
-
-    // 패턴 1: /admin/data/templates/index.html -> /admin/data/config.yaml
-    if (currentPath.includes('/templates/')) {
-        configUrl = currentPath.replace(/\/templates\/[^\/]*$/, '/config.yaml');
-    }
-    // 패턴 2: /admin/data/ -> /admin/data/config.yaml
-    else if (currentPath.endsWith('/data/')) {
-        configUrl = currentPath + 'config.yaml';
-    }
-    // 패턴 3: /admin/data/index.html -> /admin/data/config.yaml
-    else if (currentPath.includes('/data/')) {
-        configUrl = currentPath.replace(/\/[^\/]*$/, '/config.yaml');
-    }
-    // 기본값
-    else {
-        configUrl = '/admin/data/config.yaml';
-    }
-
-    console.log('현재 경로:', currentPath);
-    console.log('config.yaml 경로:', configUrl);
-
-    initializeNavigation(configUrl);
+    initializeNavigation();
 });
 
 // 전역에서 사용할 수 있도록 함수들 노출
