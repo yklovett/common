@@ -95,8 +95,29 @@ async function initializeNavigation(configUrl) {
 document.addEventListener("DOMContentLoaded", function () {
     // config.yaml 파일의 URL을 동적으로 생성
     const currentPath = window.location.pathname;
-    // /admin/data/templates/index.html -> /admin/data/config.yaml
-    const configUrl = currentPath.replace(/\/templates\/[^\/]*$/, '/config.yaml');
+
+    // 여러 가지 경로 패턴을 시도
+    let configUrl;
+
+    // 패턴 1: /admin/data/templates/index.html -> /admin/data/config.yaml
+    if (currentPath.includes('/templates/')) {
+        configUrl = currentPath.replace(/\/templates\/[^\/]*$/, '/config.yaml');
+    }
+    // 패턴 2: /admin/data/ -> /admin/data/config.yaml
+    else if (currentPath.endsWith('/data/')) {
+        configUrl = currentPath + 'config.yaml';
+    }
+    // 패턴 3: /admin/data/index.html -> /admin/data/config.yaml
+    else if (currentPath.includes('/data/')) {
+        configUrl = currentPath.replace(/\/[^\/]*$/, '/config.yaml');
+    }
+    // 기본값
+    else {
+        configUrl = '/admin/data/config.yaml';
+    }
+
+    console.log('현재 경로:', currentPath);
+    console.log('config.yaml 경로:', configUrl);
 
     initializeNavigation(configUrl);
 });
