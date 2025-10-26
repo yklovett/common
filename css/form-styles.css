@@ -381,3 +381,26 @@
         font-size: 0.95rem;
     }
 }
+
+/* 폼 마우스 오버 및 포커스 스타일 */
+.form-control:hover,
+.form-select:hover,
+input[type="text"]:hover,
+input[type="password"]:hover,
+input[type="email"]:hover,
+textarea:hover,
+select:hover {
+    border-color: #007bff !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+}
+
+.form-control:focus,
+.form-select:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #007bff !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+}
