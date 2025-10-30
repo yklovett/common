@@ -3,15 +3,26 @@
  * React/Framer Motion 기반 애니메이션을 순수 CSS로 변환
  */
 
-/* navbar와 드롭다운 메뉴가 애니메이션 위에 표시되도록 z-index 설정 */
+/* z-index 구조: 인트로(999) < navbar(1000) < dropdown(1001) < modal-backdrop(1040) < modal(1050) */
+
+/* navbar: 인트로 애니메이션 위에 표시되지만 모달보다는 낮게 */
 .navbar {
-    z-index: 10000 !important;
+    z-index: 1000 !important;
     position: relative;
 }
 
+/* dropdown: navbar보다 약간 높게 */
 .dropdown-menu {
-    z-index: 10001 !important;
-    /* intro-overlay(999)보다 높게 설정 */
+    z-index: 1001 !important;
+}
+
+/* 모달: Bootstrap 기본값 유지, navbar보다 높게 */
+.modal-backdrop {
+    z-index: 1040 !important;
+}
+
+.modal {
+    z-index: 1050 !important;
 }
 
 /* 페이지 blur 효과 (약한 블러) */
@@ -35,7 +46,7 @@ body:not(.intro-blur)>* {
     background-color: transparent;
     /* 배경 투명하게 */
     z-index: 999;
-    /* navbar(10000)와 dropdown-menu(10001)보다 낮게 설정 */
+    /* navbar(1000)보다 낮게 설정 */
     display: flex;
     align-items: center;
     justify-content: center;
