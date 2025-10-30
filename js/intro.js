@@ -7,6 +7,9 @@
 (function () {
     'use strict';
 
+    // 세션 스토리지 키
+    const INTRO_SHOWN_KEY = 'intro_animation_shown';
+
     // 상태 관리
     let showIntro = true;
 
@@ -14,6 +17,14 @@
      * 인트로 애니메이션 표시
      */
     function showIntroAnimation() {
+        // 이미 이 세션에서 애니메이션을 본 경우 건너뛰기
+        if (sessionStorage.getItem(INTRO_SHOWN_KEY)) {
+            return;
+        }
+
+        // 애니메이션 표시 플래그 설정
+        sessionStorage.setItem(INTRO_SHOWN_KEY, 'true');
+
         // 페이지 콘텐츠에 blur 효과 추가
         const pageContent = document.body;
         if (pageContent) {
