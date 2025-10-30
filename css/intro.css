@@ -18,11 +18,11 @@
 
 /* 모달: Bootstrap 기본값 유지, navbar보다 높게 */
 .modal-backdrop {
-    z-index: 1040 !important;
+    z-index: 10040 !important;
 }
 
 .modal {
-    z-index: 1060 !important;
+    z-index: 10050 !important;
 }
 
 /* 페이지 blur 효과 (약한 블러) */
