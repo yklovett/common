@@ -68,57 +68,6 @@ body:not(.intro-blur)>* {
     pointer-events: none;
 }
 
-/* Signal wave rings 컨테이너 */
-.intro-waves {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-}
-
-/* Signal wave rings */
-.intro-wave {
-    position: absolute;
-    border-radius: 50%;
-    border: 2px solid rgba(239, 68, 68, 0.4);
-    /* red-500/40 */
-    transform: translate(-50%, -50%);
-}
-
-.intro-wave-1 {
-    animation: waveAnimation 1.5s ease-out;
-}
-
-.intro-wave-2 {
-    animation: waveAnimation 1.5s ease-out 0.25s;
-}
-
-.intro-wave-3 {
-    animation: waveAnimation 1.5s ease-out 0.5s;
-}
-
-@keyframes waveAnimation {
-    0% {
-        width: 0;
-        height: 0;
-        opacity: 0;
-    }
-
-    33% {
-        width: 500px;
-        height: 500px;
-        opacity: 0.6;
-    }
-
-    100% {
-        width: 700px;
-        height: 700px;
-        opacity: 0;
-    }
-}
-
 /* 로고 컨테이너 */
 .intro-logo-container {
     position: relative;
@@ -193,12 +142,20 @@ body:not(.intro-blur)>* {
             rgba(255, 255, 255, 0.3),
             transparent);
     transform: translateX(-100%);
-    animation: shineAnimation 0.4s ease-in-out 0.3s;
+    animation: shineAnimation 0.8s ease-in-out 0.3s;
     pointer-events: none;
 }
 
 @keyframes shineAnimation {
     0% {
+        transform: translateX(-100%);
+    }
+
+    50% {
+        transform: translateX(200%);
+    }
+
+    51% {
         transform: translateX(-100%);
     }
 
@@ -326,26 +283,6 @@ body:not(.intro-blur)>* {
         width: 350px;
     }
 
-    @keyframes waveAnimation {
-        0% {
-            width: 0;
-            height: 0;
-            opacity: 0;
-        }
-
-        33% {
-            width: 350px;
-            height: 350px;
-            opacity: 0.6;
-        }
-
-        100% {
-            width: 500px;
-            height: 500px;
-            opacity: 0;
-        }
-    }
-
     .intro-corner-gradient {
         width: 256px;
         height: 256px;
@@ -355,25 +292,5 @@ body:not(.intro-blur)>* {
 @media (max-width: 480px) {
     .intro-logo-img {
         width: 280px;
-    }
-
-    @keyframes waveAnimation {
-        0% {
-            width: 0;
-            height: 0;
-            opacity: 0;
-        }
-
-        33% {
-            width: 280px;
-            height: 280px;
-            opacity: 0.6;
-        }
-
-        100% {
-            width: 400px;
-            height: 400px;
-            opacity: 0;
-        }
     }
 }
