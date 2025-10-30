@@ -1,7 +1,7 @@
 /**
  * 인트로 애니메이션 스크립트
  * React/Framer Motion 기반 애니메이션을 순수 JavaScript로 변환
- * Signal wave rings, 로고 애니메이션, 데이터 흐름 라인 등을 포함
+ * 로고 애니메이션, 데이터 흐름 라인 등을 포함
  */
 
 (function () {
@@ -35,17 +35,6 @@
         const introOverlay = document.createElement('div');
         introOverlay.id = 'intro-overlay';
         introOverlay.className = 'intro-overlay';
-
-        // Signal wave rings 컨테이너
-        const waveContainer = document.createElement('div');
-        waveContainer.className = 'intro-waves';
-
-        // Signal wave rings 생성
-        for (let i = 1; i <= 3; i++) {
-            const wave = document.createElement('div');
-            wave.className = `intro-wave intro-wave-${i}`;
-            waveContainer.appendChild(wave);
-        }
 
         // 로고 컨테이너
         const logoContainer = document.createElement('div');
@@ -89,7 +78,6 @@
         cornerGradient2.className = 'intro-corner-gradient intro-corner-bottom-right';
 
         // 요소들을 오버레이에 추가
-        introOverlay.appendChild(waveContainer);
         introOverlay.appendChild(logoContainer);
         introOverlay.appendChild(flowLinesContainer);
         introOverlay.appendChild(cornerGradient1);
@@ -129,4 +117,3 @@
         showIntroAnimation();
     }
 })();
-
