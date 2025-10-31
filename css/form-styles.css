@@ -78,6 +78,17 @@
     background: #ffffff;
 }
 
+/* ID/Password 필드 포커스 시 라벨 폰트 두꺼워지기 */
+#loginForm label[for="userid"]:has(+ input#userid:focus),
+#loginForm label[for="userpw"]:has(+ input#userpw:focus),
+#loginForm label[for="userid"].focused,
+#loginForm label[for="userpw"].focused {
+    font-weight: 800 !important;
+    color: #007bff !important;
+    transition: all 0.3s ease !important;
+    text-shadow: 0 1px 2px rgba(0, 123, 255, 0.2) !important;
+}
+
 /* 플레이스홀더 스타일 */
 #loginForm .form-control::placeholder,
 #forgotPasswordForm .form-control::placeholder,
