@@ -26,7 +26,6 @@
 }
 
 /* 페이지 blur 효과 (약한 블러) */
-/*
 body.intro-blur>*:not(#intro-overlay) {
     filter: blur(1px);
     transition: filter 0.7s ease;
@@ -36,7 +35,6 @@ body:not(.intro-blur)>* {
     filter: blur(0);
     transition: filter 0.7s ease;
 }
-*/
 
 /* 인트로 오버레이 컨테이너 */
 #intro-overlay {
