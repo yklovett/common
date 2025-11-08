@@ -25,8 +25,8 @@
     z-index: 10050 !important;
 }
 
-/*
 /* 페이지 blur 효과 (약한 블러) */
+/*
 body.intro-blur>*:not(#intro-overlay) {
     filter: blur(1px);
     transition: filter 0.7s ease;
