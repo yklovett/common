@@ -25,12 +25,6 @@
         // 애니메이션 표시 플래그 설정
         sessionStorage.setItem(INTRO_SHOWN_KEY, 'true');
 
-        // 페이지 콘텐츠에 blur 효과 추가
-        const pageContent = document.body;
-        if (pageContent) {
-            pageContent.classList.add('intro-blur');
-        }
-
         // 인트로 오버레이 컨테이너 생성
         const introOverlay = document.createElement('div');
         introOverlay.id = 'intro-overlay';
@@ -94,11 +88,6 @@
         // 1.2초 후 인트로 애니메이션 종료
         setTimeout(() => {
             introOverlay.classList.add('exit');
-
-            // 페이지 blur 제거
-            if (pageContent) {
-                pageContent.classList.remove('intro-blur');
-            }
 
             // 애니메이션 완료 후 제거 (0.3초 페이드아웃)
             setTimeout(() => {
