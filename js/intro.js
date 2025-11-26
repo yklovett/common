@@ -89,12 +89,12 @@
         setTimeout(() => {
             introOverlay.classList.add('exit');
 
-            // 애니메이션 완료 후 제거 (0.3초 페이드아웃)
+            // 애니메이션 완료 후 제거 (0.2초 페이드아웃)
             setTimeout(() => {
                 introOverlay.remove();
                 showIntro = false;
-            }, 300);
-        }, 1200);
+            }, 200);
+        }, 900);
     }
 
     /**
