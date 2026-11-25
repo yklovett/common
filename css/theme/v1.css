@@ -123,6 +123,39 @@ body {
     height: 34px;
 }
 
+/* 작은 입력칸(-sm)은 btn-sm 과 같은 30px — 위 34px 규칙이 -sm 에도 걸려 버튼·select2 와 높이가 어긋났다 */
+.app-main :is(input.form-control-sm, .form-select-sm) {
+    height: 30px;
+    min-height: 30px;
+}
+
+/* select2(bootstrap-5 테마) — 입력칸과 같은 높이·모서리·글자 크기. 드롭다운은 body 에 붙으므로 범위 없이 적는다 */
+.app-main .select2-container--bootstrap-5 .select2-selection {
+    min-height: 34px;
+    border: 1px solid var(--tw-border-strong);
+    border-radius: var(--tw-radius-sm);
+    font-size: 13px;
+}
+
+.app-main .select2-container--bootstrap-5 .select2-selection--single {
+    padding-top: 0;
+    padding-bottom: 0;
+    display: flex;
+    align-items: center;
+}
+
+.app-main .select2-container--bootstrap-5 .select2-selection.select2--small {
+    min-height: 30px;
+    font-size: 13px;
+}
+
+.select2-container--bootstrap-5 .select2-dropdown,
+.select2-container--bootstrap-5 .select2-dropdown .select2-results__option,
+.select2-container--bootstrap-5 .select2-dropdown .select2-search .select2-search__field,
+.app-main .select2-container--bootstrap-5 .select2-selection__rendered {
+    font-size: 13px;
+}
+
 .app-main .form-control::placeholder {
     color: #98a2b3;
 }
