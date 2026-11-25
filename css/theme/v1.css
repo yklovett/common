@@ -74,8 +74,9 @@ body {
     padding: 12px 8px 14px;
 }
 
+/* 모서리 밖을 자르되 스크롤 컨테이너는 만들지 않는다(hidden 이면 안쪽 표의 sticky 헤더가 풀린다) */
 .app-main .card {
-    overflow: hidden;
+    overflow: clip;
 }
 
 .app-main .card-header {
