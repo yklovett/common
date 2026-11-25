@@ -1,0 +1,265 @@
+/* 사내 서비스 공통 본문 테마 v1 — build 서비스 화면을 기준으로 만든 iOS 풍 모양
+ *
+ * 사용법
+ *   <link rel="stylesheet" href="https://yklovett.github.io/common/css/theme/v1.css">  (서비스 CSS 뒤)
+ *   본문을 <main class="app-main"> 처럼 .app-main 으로 감싼다. 필터 행은 .filter-row, 표 묶음은 .table-container.
+ *
+ * ★ nav 는 범위 밖. 규칙은 본문(.app-main)으로 한정한다. 모달은 본문 밖이라 Bootstrap 기본 그대로.
+ * ★ 표 줄무늬 색은 서비스에 맡긴다(행 배경을 칠하지 않음). 칸막이·높이·글자만 바꾼다.
+ * ★ 서비스 CSS 가 ID 선택자 + !important 로 테두리를 그리면 여기 규칙이 진다 → 서비스 쪽 보정 CSS 에서
+ *   table:is(#id1, #id2) 로 같은 규칙을 한 번 더 얹는다.
+ * ★ 모든 서비스에 즉시 반영된다. 모양이 크게 바뀌는 수정은 v2.css 로 새로 만들고 서비스를 하나씩 옮긴다.
+ */
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+
+:root {
+    --tw-bg: #f5f6f8;
+    --tw-surface: #ffffff;
+    --tw-surface-2: #f9fafb;
+    --tw-border: #e4e7ec;
+    --tw-border-strong: #d0d5dd;
+    --tw-line: #e9ecf1;
+    --tw-text: #212529;
+    --tw-muted: #667085;
+    --tw-primary: #2f6fed;
+    --tw-primary-hover: #1f5bd6;
+    --tw-primary-soft: #eef4ff;
+    --tw-row-hover: #e8eefc;
+    --tw-radius: 10px;
+    --tw-radius-sm: 7px;
+    --tw-shadow: 0 1px 2px rgba(16, 24, 40, .05);
+    --tw-font: "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+
+body {
+    background-color: var(--tw-bg) !important;
+}
+
+.app-main {
+    font-family: var(--tw-font);
+    color: var(--tw-text);
+    padding: 16px 24px 32px;
+    margin-top: 0 !important;
+}
+
+/* 화면 제목·설명 */
+.app-main h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.app-main h4 i {
+    color: var(--tw-primary);
+}
+
+.app-main p.text-muted {
+    font-size: 13px;
+    color: var(--tw-muted) !important;
+}
+
+/* ── 카드: 필터 행·표 묶음·기존 .card ────────────────── */
+.app-main > .filter-row,
+.app-main > .table-container,
+.app-main .card {
+    background: var(--tw-surface);
+    border: 1px solid var(--tw-border);
+    border-radius: var(--tw-radius);
+    box-shadow: var(--tw-shadow);
+}
+
+.app-main > .filter-row {
+    margin: 0 0 16px;
+    padding: 12px 8px 14px;
+}
+
+.app-main .card {
+    overflow: hidden;
+}
+
+.app-main .card-header {
+    background: var(--tw-surface-2);
+    border-bottom: 1px solid var(--tw-border);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.app-main .form-label {
+    margin-bottom: 5px;
+    color: var(--tw-text);
+}
+
+/* 필터 라벨 13px 굵게 */
+.app-main .filter-row .form-label {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.app-main .form-label a {
+    color: var(--tw-primary) !important;
+}
+
+/* ── 입력칸 ──────────────────────────────────────── */
+.app-main .form-control,
+.app-main .form-select {
+    min-height: 34px;
+    border: 1px solid var(--tw-border-strong);
+    border-radius: var(--tw-radius-sm);
+    background-color: var(--tw-surface);
+    font-size: 13px;
+    color: var(--tw-text);
+    box-shadow: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.app-main input.form-control,
+.app-main .form-select {
+    height: 34px;
+}
+
+.app-main .form-control::placeholder {
+    color: #98a2b3;
+}
+
+.app-main .form-control:focus,
+.app-main .form-select:focus {
+    border-color: var(--tw-primary);
+    box-shadow: 0 0 0 3px rgba(47, 111, 237, .15);
+}
+
+/* ── 버튼 ─────────────────────────────────────────── */
+.app-main .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-height: 34px;
+    padding: 0 14px;
+    border-radius: var(--tw-radius-sm);
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: var(--tw-shadow);
+    transition: background-color .15s, border-color .15s, color .15s;
+}
+
+.app-main .btn-sm {
+    min-height: 30px;
+    height: 30px;
+    padding: 0 12px;
+}
+
+.app-main .btn-group > .btn {
+    box-shadow: none;
+}
+
+/* 주 버튼만 파랑 */
+.app-main .btn-primary {
+    background: var(--tw-primary);
+    border-color: var(--tw-primary);
+    color: #fff;
+}
+
+.app-main .btn-primary:hover {
+    background: var(--tw-primary-hover);
+    border-color: var(--tw-primary-hover);
+}
+
+/* 보조 버튼 — 흰 바탕 + 테두리 */
+.app-main .btn-secondary,
+.app-main .btn-light,
+.app-main .btn-outline-secondary,
+.app-main .btn-outline-primary,
+.app-main .filter-row .btn-success {
+    background: var(--tw-surface);
+    border: 1px solid var(--tw-border-strong);
+    color: var(--tw-text);
+}
+
+.app-main .btn-secondary:hover,
+.app-main .btn-light:hover,
+.app-main .btn-outline-secondary:hover,
+.app-main .btn-outline-primary:hover,
+.app-main .filter-row .btn-success:hover {
+    background: var(--tw-surface-2);
+    border-color: #b8c0cc;
+    color: var(--tw-text);
+}
+
+/* 보기 전환(라디오 버튼 묶음) — 선택된 쪽만 옅은 파랑 */
+.app-main .btn-check:checked + .btn {
+    background: var(--tw-primary-soft);
+    border-color: #b9cdfa;
+    color: var(--tw-primary);
+    font-weight: 600;
+}
+
+/* ── 표 ──────────────────────────────────────────── */
+.app-main table.table {
+    --bs-table-hover-bg: transparent;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 0;
+    font-size: 13px;
+}
+
+/* 세로 칸막이 없이 옅은 가로줄만 */
+.app-main table.table > :not(caption) > * > * {
+    border-width: 0 !important;
+    border-bottom: 1px solid var(--tw-line) !important;
+}
+
+.app-main table.table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    height: 38px;
+    padding: 0 10px;
+    vertical-align: middle;
+    background: var(--tw-surface-2) !important;
+    border-bottom: 1px solid var(--tw-border) !important;
+    color: var(--tw-text);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.app-main > .table-container table.table thead th:first-child {
+    border-top-left-radius: var(--tw-radius);
+}
+
+.app-main > .table-container table.table thead th:last-child {
+    border-top-right-radius: var(--tw-radius);
+}
+
+.app-main table.table thead th:hover {
+    background: #f2f4f7 !important;
+}
+
+.app-main table.table th.sort-asc::after,
+.app-main table.table th.sort-desc::after {
+    color: var(--tw-primary);
+    font-size: 10px;
+}
+
+.app-main table.table tbody td {
+    height: 38px;
+    padding: 0 10px;
+    vertical-align: middle;
+    font-size: 13px;
+    line-height: 1.3;
+}
+
+.app-main table.table tbody tr:last-child td {
+    border-bottom: 0 !important;
+}
+
+/* 행 hover — 줄무늬 색(--bs-table-bg) 위에 옅은 파랑 */
+.app-main table.table tbody tr:hover > td {
+    --bs-table-bg-state: var(--tw-row-hover);
+}
+
+/* ── 알림 ─────────────────────────────────────────── */
+.app-main .alert {
+    border-radius: var(--tw-radius-sm);
+    font-size: 13px;
+}
