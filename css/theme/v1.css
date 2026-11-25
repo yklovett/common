@@ -123,6 +123,10 @@ body {
 .app-main input.form-control,
 .app-main .form-select {
     height: 34px;
+    /* 높이를 고정하므로 위아래 여백은 0 — 서비스 CSS 의 큰 padding(예: 12px 16px)이 남으면 글자가 잘린다.
+       가로 여백(셀렉트 화살표 자리 포함)은 서비스·Bootstrap 값을 그대로 둔다 */
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 /* 작은 입력칸(-sm)은 btn-sm 과 같은 30px — 위 34px 규칙이 -sm 에도 걸려 버튼·select2 와 높이가 어긋났다 */
