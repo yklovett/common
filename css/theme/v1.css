@@ -264,3 +264,56 @@ body {
     border-radius: var(--tw-radius-sm);
     font-size: 13px;
 }
+
+/* ── 글자 크기 기준 ───────────────────────────────────
+ * 사내 관리 화면은 표·폼 위주라 본문을 13px 하나로 맞추고, 제목만 단계를 둔다.
+ *   화면 제목 18 · 모달 제목 16 · 섹션 제목 14 · 소제목 13 · 본문/라벨/입력/버튼/표 13 · 보조 문구 12
+ * ★ 예외(건드리지 않음): .display-*, .fs-1~6 유틸리티, 진행률·통계처럼 일부러 크게 지정한 요소.
+ * ★ 모달은 본문(.app-main) 밖이라 .modal 로 따로 적는다. nav 는 여전히 범위 밖.
+ */
+.app-main,
+.modal {
+    font-size: 13px;
+}
+
+.modal {
+    font-family: var(--tw-font);
+    color: var(--tw-text);
+}
+
+/* 제목 */
+.app-main :is(h1, h2, h3, h4) {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.app-main :is(h5, .h5, .card-title),
+.modal :is(h1, h2, h3, h4, h5):not(.modal-title) {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.app-main :is(h6, .h6),
+.modal :is(h6, .h6) {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.modal .modal-title {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* Bootstrap 이 rem 으로 크기를 직접 주는 부품 — 바탕 13px 을 물려받지 않으므로 다시 적는다 */
+:is(.app-main, .modal) :is(.form-control, .form-select, .input-group-text, .btn, .page-link,
+                            .dropdown-item, .list-group-item, .form-check-label, .nav-link, .alert, label, p, li, td, th) {
+    font-size: 13px;
+}
+
+:is(.app-main, .modal) :is(.btn-sm, .form-control-sm, .form-select-sm, .pagination-sm .page-link) {
+    font-size: 12px;
+}
+
+:is(.app-main, .modal) :is(small, .small, .form-text, .badge, code, pre, kbd) {
+    font-size: 12px;
+}
