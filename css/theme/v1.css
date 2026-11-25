@@ -86,7 +86,11 @@ body {
     font-weight: 600;
 }
 
-.app-main .form-label {
+/* 라벨은 입력칸 위 가운데 — 사내 서비스 공통 관례(server·ccommit 과 같게) */
+.app-main .form-label,
+.modal .form-label {
+    display: block;
+    text-align: center;
     margin-bottom: 5px;
     color: var(--tw-text);
 }
