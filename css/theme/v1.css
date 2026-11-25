@@ -295,7 +295,9 @@ body {
 /* ── 글자 크기 기준 ───────────────────────────────────
  * 사내 관리 화면은 표·폼 위주라 본문을 13px 하나로 맞추고, 제목만 단계를 둔다.
  *   화면 제목 18 · 모달 제목 16 · 섹션 제목 14 · 소제목 13 · 본문/라벨/입력/버튼/표 13 · 보조 문구 12
- * ★ 예외(건드리지 않음): .display-*, .fs-1~6 유틸리티, 진행률·통계처럼 일부러 크게 지정한 요소.
+ * ★ 예외(건드리지 않음): .display-*, .fs-1~6 유틸리티, 진행률·통계처럼 일부러 크게 지정한 요소,
+ *   렌더링된 마크다운 문서(.markdown-body 안의 제목 — 문서 자체의 제목 단계를 유지).
+ *   :where() 로 감싸 우선순위를 올리지 않는다(서비스 보정 CSS 가 그대로 이기도록).
  * ★ 모달은 본문(.app-main) 밖이라 .modal 로 따로 적는다. nav 는 여전히 범위 밖.
  */
 .app-main,
@@ -309,19 +311,19 @@ body {
 }
 
 /* 제목 */
-.app-main :is(h1, h2, h3, h4) {
+.app-main :is(h1, h2, h3, h4):not(:where(.markdown-body *)) {
     font-size: 18px;
     font-weight: 700;
 }
 
-.app-main :is(h5, .h5, .card-title),
-.modal :is(h1, h2, h3, h4, h5):not(.modal-title) {
+.app-main :is(h5, .h5, .card-title):not(:where(.markdown-body *)),
+.modal :is(h1, h2, h3, h4, h5):not(.modal-title):not(:where(.markdown-body *)) {
     font-size: 14px;
     font-weight: 700;
 }
 
-.app-main :is(h6, .h6),
-.modal :is(h6, .h6) {
+.app-main :is(h6, .h6):not(:where(.markdown-body *)),
+.modal :is(h6, .h6):not(:where(.markdown-body *)) {
     font-size: 13px;
     font-weight: 600;
 }
