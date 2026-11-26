@@ -19,7 +19,8 @@
  * 링크·버튼 클릭 전 확인 — a/button 에 data-tw-confirm="문구" (onclick="return confirm(...)" 대체)
  *
  * ★ 문구는 textContent 로 넣는다(HTML 해석 안 함). 줄바꿈 \n 유지.
- * ★ Esc·바깥 클릭 = 취소, Enter = 확인(취소 버튼에 포커스가 있을 땐 취소). 위험(danger)은 기본 포커스가 취소.
+ * ★ Esc·바깥 클릭 = 취소, Enter = 포커스가 있는 버튼(확인/취소). 위험(danger)은 기본 포커스가 취소.
+ * ★ 열린 Bootstrap 모달 위에서도 동작(모달의 포커스 가두기와 충돌하지 않음).
  */
 (function (global) {
     'use strict';
@@ -112,9 +113,12 @@
             function key(e) {
                 if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); close(false); }
                 else if (e.key === 'Enter') {
+                    // 확인은 포커스가 확인 버튼(또는 이름 입력칸)에 있을 때만 — 포커스가 상자 밖으로
+                    // 빠져 있으면(열린 Bootstrap 모달이 가져간 경우 등) 아무것도 하지 않는다
                     e.preventDefault(); e.stopPropagation();
-                    if (document.activeElement === cancel) close(false);
-                    else if (!ok.disabled) close(true);
+                    var a = document.activeElement;
+                    if (a === cancel) close(false);
+                    else if ((a === ok || (input && a === input)) && !ok.disabled) close(true);
                 } else if (e.key === 'Tab') {               // 포커스를 상자 안에 가둔다
                     var f = Array.prototype.filter.call(box.querySelectorAll('button, input'), function (x) { return !x.disabled; });
                     var i = f.indexOf(document.activeElement);
@@ -123,6 +127,8 @@
                 }
             }
             document.addEventListener('keydown', key, true);
+            // 열린 Bootstrap 모달의 포커스 가두기(document focusin)가 확인창 포커스를 빼앗지 않게 막는다
+            bd.addEventListener('focusin', function (e) { e.stopPropagation(); });
             ok.addEventListener('click', function () { close(true); });
             cancel.addEventListener('click', function () { close(false); });
             bd.addEventListener('mousedown', function (e) { if (e.target === bd) close(false); });
