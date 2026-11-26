@@ -17,7 +17,7 @@
 .twc-backdrop {
     position: fixed;
     inset: 0;
-    z-index: 1085;                      /* Bootstrap 모달(1055) 위, 토스트(1090) 아래 */
+    z-index: 10060;                     /* Bootstrap 모달(1055)·intro.css 모달(10050) 위, 토스트(10070) 아래 */
     background: rgba(16, 24, 40, .42);
     display: grid;
     place-items: center;
