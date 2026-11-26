@@ -117,6 +117,14 @@ function restoreLoginState() {
 /**
  * 로그인 실패 처리
  */
+/**
+ * 사용자 알림 — 공통 토스트(TwToast)가 로드돼 있으면 토스트, 아니면 기존 alert
+ */
+function notifyUser(type, message) {
+    if (window.TwToast) TwToast.show(type, message);
+    else alert(message);
+}
+
 function handleLoginFailure() {
     loginAttempts++;
     localStorage.setItem('loginAttempts', loginAttempts.toString());
@@ -130,7 +138,7 @@ function handleLoginFailure() {
         isLocked = true;
         startLockout(lockoutDuration);
 
-        alert('로그인 실패가 5회 누적되어 5분간 로그인이 제한됩니다.');
+        notifyUser('error', '로그인 실패가 5회 누적되어 5분간 로그인이 제한됩니다.');
     } else if (loginAttempts >= 3) {
         // 3번 실패 시 1분 잠금
         const lockoutDuration = 1 * 60 * 1000; // 1분
@@ -140,7 +148,7 @@ function handleLoginFailure() {
         isLocked = true;
         startLockout(lockoutDuration);
 
-        alert('로그인 실패가 3회 누적되어 1분간 로그인이 제한됩니다.');
+        notifyUser('warning', '로그인 실패가 3회 누적되어 1분간 로그인이 제한됩니다.');
     }
 }
 
@@ -221,7 +229,7 @@ function unlockLogin() {
 function validateLoginForm(event) {
     if (isLocked) {
         event.preventDefault();
-        alert('로그인이 일시적으로 제한되었습니다. 잠시 후 다시 시도해주세요.');
+        notifyUser('warning', '로그인이 일시적으로 제한되었습니다. 잠시 후 다시 시도해주세요.');
         return false;
     }
 
@@ -231,7 +239,7 @@ function validateLoginForm(event) {
     if (!userid || !userpw) return true;
 
     if (!userid.value.trim() || !userpw.value.trim()) {
-        alert('ID와 비밀번호를 모두 입력해주세요.');
+        notifyUser('warning', 'ID와 비밀번호를 모두 입력해주세요.');
         return false;
     }
 
