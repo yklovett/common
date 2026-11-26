@@ -1,0 +1,106 @@
+/* 사내 서비스 공통 확인 대화상자 v1 — 토스트 v1 과 같은 색·글꼴, 아이콘 원형 + 왼쪽 정렬
+ *
+ * 사용법
+ *   <link rel="stylesheet" href="https://yklovett.github.io/common/css/confirm/v1.css">
+ *   <script src="https://yklovett.github.io/common/js/confirm/v1.js"></script>
+ *   if (!await TwConfirm({ type: 'danger', title: '삭제', message: '...', target: '대상명', confirmText: '삭제' })) return;
+ *
+ * ★ 모든 서비스에 즉시 반영된다. 모양을 크게 바꿀 때는 v2 로 새로 만든다.
+ */
+
+:root {
+    --twc-info: #2f6fed;    --twc-info-soft: #eef4ff;
+    --twc-warning: #f79009; --twc-warning-soft: #fffaeb;
+    --twc-danger: #f04438;  --twc-danger-soft: #fef3f2;
+}
+
+.twc-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1085;                      /* Bootstrap 모달(1055) 위, 토스트(1090) 아래 */
+    background: rgba(16, 24, 40, .42);
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    animation: twc-fade .16s ease-out;
+}
+.twc-backdrop.leaving { animation: twc-fade .14s ease-in reverse forwards; }
+
+.twc-box {
+    font-family: var(--tw-font, "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif);
+    font-size: 13px;
+    line-height: 1.5;
+    color: #212529;
+    background: #fff;
+    width: 400px;
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 20px 48px rgba(16, 24, 40, .22);
+    overflow: hidden;
+    animation: twc-in .22s cubic-bezier(.2, .8, .2, 1);
+    text-align: left;
+}
+.twc-box.info    { --c: var(--twc-info);    --soft: var(--twc-info-soft); }
+.twc-box.warning { --c: var(--twc-warning); --soft: var(--twc-warning-soft); }
+.twc-box.danger  { --c: var(--twc-danger);  --soft: var(--twc-danger-soft); }
+
+.twc-head { display: flex; gap: 14px; padding: 20px 18px 6px; }
+.twc-icon {
+    flex: 0 0 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--soft);
+    color: var(--c);
+}
+.twc-icon svg { width: 20px; height: 20px; display: block; }
+.twc-text { flex: 1; min-width: 0; }
+.twc-title { font-size: 15px; font-weight: 700; margin: 0 0 4px; }
+.twc-msg { color: #475467; white-space: pre-line; word-break: keep-all; overflow-wrap: anywhere; }
+.twc-target {
+    margin-top: 10px;
+    padding: 8px 10px;
+    border-radius: 7px;
+    background: #f9fafb;
+    border: 1px solid #e4e7ec;
+    font-weight: 600;
+    word-break: break-all;
+    white-space: pre-line;
+}
+.twc-target small { display: block; font-weight: 500; color: #667085; font-size: 12px; }
+.twc-typed { margin-top: 10px; }
+.twc-typed label { font-size: 12px; color: #667085; margin-bottom: 4px; display: block; }
+.twc-typed input {
+    width: 100%;
+    height: 30px;
+    padding: 0 8px;
+    font-size: 13px;
+    border: 1px solid #d0d5dd;
+    border-radius: 6px;
+}
+
+.twc-foot { display: flex; justify-content: flex-end; gap: 8px; padding: 12px 18px 16px; }
+.twc-foot button {
+    min-width: 76px;
+    height: 32px;
+    padding: 0 14px;
+    font: inherit;
+    font-weight: 600;
+    border-radius: 7px;
+    border: 1px solid #d0d5dd;
+    background: #fff;
+    color: #344054;
+    cursor: pointer;
+}
+.twc-foot button:hover { background: #f9fafb; }
+.twc-foot button:focus-visible { outline: 3px solid color-mix(in srgb, var(--c) 35%, transparent); outline-offset: 1px; }
+.twc-foot .twc-ok { background: var(--c); border-color: var(--c); color: #fff; }
+.twc-foot .twc-ok:hover { filter: brightness(.93); background: var(--c); }
+.twc-foot .twc-ok:disabled { opacity: .45; cursor: not-allowed; filter: none; }
+
+@keyframes twc-in   { from { opacity: 0; transform: perspective(700px) rotateX(-14deg) translateY(-8px) scale(.98); } to { opacity: 1; transform: none; } }
+@keyframes twc-fade { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+    .twc-box { animation: twc-fade .12s ease-out; }
+}

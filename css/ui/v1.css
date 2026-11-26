@@ -1,0 +1,47 @@
+/* 사내 서비스 공통 UI v1 — 표 상태 행·정렬 화살표·숫자 정렬
+ *
+ * <link rel="stylesheet" href="https://yklovett.github.io/common/css/ui/v1.css">
+ * ★ 정렬 화살표 표준: 정렬 가능한 th 에 .sortable, 정렬 중인 th 에 .sort-asc / .sort-desc
+ * ★ 숫자 칸은 .num (오른쪽 정렬 + 고정폭 숫자)
+ */
+
+/* 표 상태 행: 조회 중·0건·실패 */
+.tw-state-row > td {
+    text-align: center !important;
+    padding: 28px 12px !important;
+    color: #667085;
+    font-size: 13px;
+    background: transparent !important;
+}
+.tw-state-error > td { color: #b42318; }
+.tw-spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+    vertical-align: -2px;
+    border: 2px solid #d0d5dd;
+    border-top-color: #2f6fed;
+    border-radius: 50%;
+    animation: tw-spin .7s linear infinite;
+}
+@keyframes tw-spin { to { transform: rotate(360deg); } }
+
+/* 정렬 화살표 */
+th.sortable { cursor: pointer; user-select: none; }
+th.sortable::after,
+th.sort-asc::after,
+th.sort-desc::after {
+    content: '▲▼';
+    display: inline-block;
+    margin-left: 4px;
+    font-size: 8px;
+    letter-spacing: -1px;
+    vertical-align: 1px;
+    color: #c4c9d2;
+}
+th.sort-asc::after  { content: '▲'; color: #2f6fed; letter-spacing: 0; }
+th.sort-desc::after { content: '▼'; color: #2f6fed; letter-spacing: 0; }
+
+/* 숫자 칸 */
+td.num, th.num { text-align: right !important; font-variant-numeric: tabular-nums; }
